@@ -25,6 +25,8 @@ class MainViewController: UIViewController {
     var score:ScoreView!
     var bestscore:ScoreView!
     
+    var gmodel:GameModel!
+    
     init() {
         self.backgrounds = Array<UIView>()
         super.init(nibName:nil,bundle:nil)
@@ -37,8 +39,15 @@ class MainViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.whiteColor()
         
+        gmodel = GameModel(dimension: self.dimension)
+        
         setupGameMap()
         setupScoreLabels()
+        
+        for i in 0..<self.dimension * self.dimension
+        {
+            genNumber()
+        }
     }
 
     func setupGameMap()
@@ -92,6 +101,18 @@ class MainViewController: UIViewController {
         
         let col = Int(arc4random_uniform(UInt32(dimension)))
         let row = Int(arc4random_uniform(UInt32(dimension)))
+        
+        if (gmodel.isFull())
+        {
+            println("位置已经满了")
+            return
+        }
+        if (gmodel.setPostion(row, col: col, value: seed) == false)
+        {
+            genNumber()
+            return
+        }
+        
         
         insertTile((col,row), value: seed)
         

@@ -46,5 +46,19 @@ class GameModel {
         return false
     }
     
+    func setPostion(row:Int , col:Int, value:Int) -> Bool
+    {
+        var index = self.dimension * row + col
+        var val = tiles[index]
+        if (val > 0)
+        {
+            return false
+        }
+        tiles[index] = value
+        
+        return true
+    }
+    
+    
     
 }
