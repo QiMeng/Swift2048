@@ -60,5 +60,27 @@ class GameModel {
     }
     
     
+    func reflowUp()
+    {
+        copyToMtiles()
+        
+        var index:Int
+        for var i=dimension-1; i>0; i--
+        {
+            //todo...
+        }
+        
+        copyFromMtiles()
+    }
+    
+    func copyToMtiles()
+    {
+        
+    }
+    
+    func copyFromMtiles()
+    {
+        
+    }
     
 }
